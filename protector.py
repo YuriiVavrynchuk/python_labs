@@ -1,3 +1,4 @@
+import os
 class Protector:
 
     static_group = "Electrics"
@@ -6,7 +7,7 @@ class Protector:
     def advertisement():
         return Protector.static_group
 
-    def __init__(self,max_power = 100,low_level_turning_off = 1,color = "blue",price = "1000$",brand = "",year = 1996):
+    def __init__(self,max_power=100,low_level_turning_off=1,color="blue",price=1000,brand="",year=1996):
         self.max_power = max_power
         self.low_level_turning_off = low_level_turning_off
         self.color = color
@@ -19,18 +20,18 @@ class Protector:
 
     def __str__(self):
         if self.brand:
-            return ("All information about protector:" + "\n" +
-            "Max power : " + str(self.max_power) + "\n" +
-            "Low level turning off :" + str(self.low_level_turning_off) + "\n" +
-            "Color :" + str(self.color) + "\n" +
-            "Price :" + str(self.price) + "\n" +
-            "Brand :" + str(self.brand) + "\n" +
-            "Year :" + str(self.year) + "\n" + "\n")
+            return ("All information about protector:" + os.linesep +
+            "Max power : " + str(self.max_power) + os.linesep +
+            "Low level turning off :" + str(self.low_level_turning_off) + os.linesep +
+            "Color :" + str(self.color) + os.linesep +
+            "Price :" + str(self.price) + os.linesep +
+            "Brand :" + str(self.brand) + os.linesep +
+            "Year :" + str(self.year) + os.linesep + os.linesep)
 
         else:
-            return ("All information about protector:" + "\n" +
-            "Max power : " + str(self.max_power) + "\n" +
-            "Low level turning off :" + str(self.low_level_turning_off) + "\n" +
-            "Color :" + str(self.color) + "\n" +
-            "Price :" + str(self.price) + "\n" +
-            "Year :" + str(self.year)+ "\n" + "\n")
+            return ("All information about protector:" + os.linesep +
+            "Max power : " + str(self.max_power) + os.linesep +
+            "Low level turning off :" + str(self.low_level_turning_off) + os.linesep +
+            "Color :" + str(self.color) + os.linesep +
+            "Price :" + str(self.price) + os.linesep +
+            "Year :" + str(self.year)+ os.linesep + os.linesep)
