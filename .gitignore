@@ -131,3 +131,5 @@ dmypy.json
 #Folders
 .idea/
 venv/
+.coverage/
+__pycache__/
