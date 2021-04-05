@@ -7,16 +7,15 @@ def main():
     keep_status = " 200 "
     counter = 0
     hour = date + ':' + "\w\w"
-
-    with open("apache_logs", 'rb') as readfile:
-        checking_text = readfile.readlines()
+    checking_text = open('apache_logs', 'r')
 
     for line in checking_text:
-        if (bytes(date, encoding='utf8') in line) and (bytes(keep_word, encoding='utf8') in line) and (bytes(keep_status, encoding='utf8') in line):
+        if date in line and keep_word in line and keep_status in line:
             match = re.search(hour, str(line))
             if (int(match.group().replace("17/May/2015:", '')) >= 1) and (int(match.group().replace("17/May/2015:", '')) <= 21):
                 counter += 1
     print(counter)
+    checking_text.close()
 
 
 if __name__ == '__main__':
