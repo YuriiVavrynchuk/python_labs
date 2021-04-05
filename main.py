@@ -3,7 +3,7 @@ import re
 
 def main():
     date = "17/May/2015"
-    keep_word = "GET"
+    keep_word = "GET /presentations"
     keep_status = " 200 "
     counter = 0
     hour = date + ':' + "\w\w"
