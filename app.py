@@ -1,3 +1,5 @@
+from os import abort
+
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
@@ -43,6 +45,8 @@ def get_all_professions():
 @app.route('/professions/<id>', methods=['GET'])
 def get_profession(id):
     profession = MedicalProfession.query.get(id)
+    if not profession:
+        abort(404)
     return medical_profession_scheme.jsonify(profession)
 
 
@@ -70,6 +74,8 @@ def update_profession(id):
         except KeyError:
             pass
     profession = MedicalProfession.query.get(id)
+    if not profession:
+        abort(404)
     try_upd(profession, 'department')
     try_upd(profession, 'duration')
     try_upd(profession, 'avgSalary')
@@ -83,6 +89,8 @@ def update_profession(id):
 @app.route('/professions/<id>', methods=['DELETE'])
 def delete_profession(id):
     profession = MedicalProfession.query.get(id)
+    if not profession:
+        abort(404)
     db.session.delete(profession)
     db.session.commit()
 
