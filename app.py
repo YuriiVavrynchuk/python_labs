@@ -67,20 +67,13 @@ def add_profession():
 
 @app.route('/professions/<id>', methods=['PUT'])
 def update_profession(id):
-    def try_upd(updated_obj, updated_param):
-        try:
-            new_value = request.json[updated_param]
-            setattr(updated_obj, updated_param, new_value)
-        except KeyError:
-            pass
     profession = MedicalProfession.query.get(id)
     if not profession:
         abort(404)
-    try_upd(profession, 'department')
-    try_upd(profession, 'duration')
-    try_upd(profession, 'avgSalary')
-    try_upd(profession, 'maxAge')
-
+    profession.department = request.json["department"]
+    profession.duration = request.json["duration"]
+    profession.avgSalary = request.json["avgSalary"]
+    profession.maxAge = request.json["maxAge"]
     db.session.commit()
 
     return medical_profession_scheme.jsonify(profession)
