@@ -52,17 +52,13 @@ def get_profession(id):
 
 @app.route('/professions', methods=['POST'])
 def add_profession():
-    department = request.json['department']
-    duration = request.json['duration']
-    avgSalary = request.json['avgSalary']
-    maxAge = request.json['maxAge']
 
-    new_profession = MedicalProfession(department, duration, avgSalary, maxAge)
+    data = medical_profession_scheme.load(request.json)
+    profession = MedicalProfession(**data)
 
-    db.session.add(new_profession)
+    db.session.add(profession)
     db.session.commit()
-
-    return medical_profession_scheme.jsonify(new_profession)
+    return medical_profession_scheme.jsonify(profession)
 
 
 @app.route('/professions/<id>', methods=['PUT'])
