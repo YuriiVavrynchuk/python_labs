@@ -4,6 +4,8 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
+from marshmallow import fields
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:kswtq1337@localhost:3306/iot-test-db'
@@ -29,6 +31,10 @@ class MedicalProfession(db.Model):
 class MedicalProfessionScheme(ma.Schema):
     class Meta:
         fields = ('department', 'duration', 'avgSalary', 'maxAge')
+    department = fields.Str();
+    duration = fields.Integer();
+    avgSalary = fields.Str();
+    maxAge = fields.Integer();
 
 
 medical_profession_scheme = MedicalProfessionScheme()
